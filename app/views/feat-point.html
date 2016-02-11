@@ -1,0 +1,10 @@
+<div id="PointOnDrawing" ng-click="addOnClick($event, featNameForSelection, featLabel)"
+     style='position:relative; cursor:crosshair;'> 
+  <img id="drawingPoint" src="{{imgSource}}" class="img-thumbnail-mod"/>
+  <span ng-init='ptDivDim()'
+        ng-repeat='pt in annotationArray | showOnlyThisFeature:featNameForSelection'
+        class='clickpoint'
+        style='top:{{(pt.yToStore1*divInfo[1]/(divInfo[3])-10)  }}px;
+        		left:{{((pt.xToStore1*divInfo[0]/divInfo[2])-10)}}px'>
+    <b>X</b></span> 
+</div>

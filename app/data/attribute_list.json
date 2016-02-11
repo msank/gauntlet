@@ -1,0 +1,12 @@
+ [
+   {
+      "name": "D1",
+      "description": "Main figure",
+      "annotationType": "Rectangle"
+    },
+    {
+      "name": "D2",
+      "description": "Other figures",
+      "annotationType": "Point"
+    }
+ ]

@@ -1,0 +1,33 @@
+body,html, #ng_view {
+    height:100%;
+}
+
+.gridStyle1000 {
+    border: 1px solid rgb(212,212,212);
+    height: 1000px;
+}
+
+.gridStyle750 {
+    border: 1px solid rgb(212,212,212);
+    height: 750px;
+}
+
+.gridStyle500 {
+    border: 1px solid rgb(212,212,212);
+    height: 500px;
+}
+
+.gridStyle250 {
+    border: 1px solid rgb(212,212,212);
+    height: 251px;
+}
+
+.gridStyle100 {
+    border: 1px solid rgb(212,212,212);
+    height: 101px;
+}
+
+.gridStyle50 {
+    border: 1px solid rgb(212,212,212);
+    height: 51px;
+}

@@ -1,0 +1,19 @@
+ <!--<textarea type="text" id="commentArea" name="comment.added" ng-model="comment.added" class="form-control"
+                        rows="1" placeholder="{{displayedComment}}" style="{{addedSuccessStyle}}"> 
+ </textarea>
+ <button ng-click="handleComment()">Save comments</button>-->
+
+
+
+ <div class="input-group" style="margin: 10px 10px 0px 10px;">
+ 	<form id="commentformid" name="commentform" >
+ 	<input type="text" class="form-control" id="commentArea" name="comment.added" ng-model="comment.added" placeholder="{{displayedComment}}" style="{{addedSuccessStyle}}" required>
+ 	</form>
+ 	<span class="input-group-btn">
+    	    <button id="saveCommButton" class="btn btn-success" type="button" ng-click="handleComment()" ng-disabled="(commentform.$valid && !isDisabled) ? false : true" ><span class="glyphicon glyphicon-floppy-save" > </span><small>Save</small></button>
+ 	</span>
+ </div>
+
+<label>
+	<!--{{isDisabled}} & {{commentform.$valid}}-->
+</label>

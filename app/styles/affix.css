@@ -1,0 +1,76 @@
+
+
+ul.affix {
+    position: fixed;
+    top: 60px;
+    left: 62px;
+    width: 360px;
+}
+ul.affix-top {
+    position: static;
+}
+ul.affix-bottom {
+    position: absolute;
+}
+
+/* First level of nav */
+.sidenav {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    padding-top:    10px;
+    padding-bottom: 10px;
+    background-color: #f7f5fa;
+    border-radius: 5px;
+}
+
+/* All levels of nav */
+.sidebar .nav > li > a {
+    display: block;
+    color: #716b7a;
+    padding: 5px 20px;
+}
+.sidebar .nav > li > a:hover,
+.sidebar .nav > li > a:focus {
+    font-weight: bold;
+    color: #716b7a;;
+    /*text-decoration: none;*/
+    background-color: transparent;
+}
+.sidebar .nav > .active > a,
+.sidebar .nav > .active:hover > a,
+.sidebar .nav > .active:focus > a {
+    font-weight: bold;
+    /*color: #716b7a;*/
+    color:white;
+    /*background-color: #ededed;*/
+    background-color: #bfbfbf;
+}
+
+/* when visited */
+.sidebar .nav > .done > a,
+.sidebar .nav > .done:hover > a,
+.sidebar .nav > .done:focus > a {
+    color: #5cb85c;
+    /*background-color: #dff0d8;*/
+}
+
+
+/* Nav: second level */
+.sidebar .nav .nav {
+    display: none;
+}
+.sidebar .nav > li.active .nav {
+    display:block;
+}
+.sidebar .nav .nav {
+    margin-bottom: 8px;
+}
+.sidebar .nav .nav > li > a {
+    padding-top:    3px;
+    padding-bottom: 3px;
+    padding-left: 30px;
+    font-size: 90%;
+}
+
+
+

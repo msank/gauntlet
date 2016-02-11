@@ -1,0 +1,18 @@
+<div style='position:relative'> 
+  <img id="drawingPreview" src="{{imgSource}}" class="img-thumbnail-mod"/>
+                <span ng-init='previewDivDim()' ng-repeat='pt in annotationArray | showOnlyThisType:"point"'
+                      class='clickpoint'
+                      style='top:{{(pt.yToStore1*divInfo[1]/(divInfo[3])-10)  }}px;
+                            left:{{((pt.xToStore1*divInfo[0]/divInfo[2])-10)}}px'>
+                                      {{pt.feature}} </span> 
+                <span ng-init='previewDivDim()' ng-repeat='box in annotationArray | showOnlyThisType:"box"'
+                      class='boxidrectangle'
+                      style='top:{{box.yToStore1*divInfo[1]/divInfo[3]}}px;left:{{box.xToStore1*divInfo[0]/divInfo[2]}}px'>
+                                      &nbsp;{{box.feature}}&nbsp; </span> 
+                <span
+                  class='area' ng-init='previewDivDim()' ng-repeat='box in annotationArray | showOnlyThisType:"box"'
+                  style='position: absolute; border: 3px solid #46b8da; top:{{box.yToStore1*divInfo[1]/divInfo[3]}}px;left:{{box.xToStore1*divInfo[0]/divInfo[2]}}px; width: {{(box.xToStore2-box.xToStore1)*divInfo[0]/divInfo[2]}}px; height: {{(box.yToStore2-box.yToStore1)*divInfo[1]/divInfo[3]}}px;z-index: 1000;'>
+                </span>
+
+</div>
+

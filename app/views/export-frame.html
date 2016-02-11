@@ -1,0 +1,36 @@
+<div class="modal-header" >
+    <h3 class="modal-title">Export Annotations...</h3>
+</div>
+<div class="modal-body" >
+
+    <!--<ul>
+        <li ng-repeat="item in items">
+            <a ng-click="selected.item = item">{{ item }}</a>
+        </li>
+    </ul>
+    Selected: <b>{{ selected.item }}</b>-->
+    <form name="expform">
+        <p>Please enter your name</p>
+
+    <div class="form-group">
+        <label >Last Name</label>
+        <input   type="text" class="form-control"  name="lastName" ng-model="user.lastname" required/>
+        <label >First Name</label>
+        <input   type="text" class="form-control"  name="firstName" ng-model="user.firstname" required/>
+    </div>
+    </form>
+
+
+
+
+
+        <label > {{getFilname("annotation")}}.csv </label>
+
+ </div>
+
+<div class="modal-footer" >
+    <button class="btn btn-primary" ng-click="close()" style="float:left">Close</button>
+    <button type="button" ng-csv="getExportArray()" filename="{{getFilname('annotation')}}"
+                    class="btn  btn-success" csv-header="csvHeader" ng-disabled="expform.$invalid" style="float:right"><span class="glyphicon glyphicon-save-file"></span> Download
+    </button>
+</div>

@@ -1,0 +1,380 @@
+<!-- Header-->
+<div class="row">
+  
+<nav class="navbar   navbar-default" role="navigation" style="margin-bottom: 0px;border: none;">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main_menu">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+
+      </button>
+      <headerannot></headerannot>
+
+      
+    </div>
+
+    <div class="collapse navbar-collapse" id="main_menu">
+
+      <span class="imgname" style="color:#a5a5a5">{{fn}}</span>
+
+<!--  <login-cp></login-cp> -->
+    
+   
+
+      <ul class="nav navbar-nav navbar-right navbar-ctrl-tool">
+      <li class="divider-vertical"  > &nbsp</li>
+        
+        <li style = "padding-left:10px">
+          <button id="getprev" type="button" ng-click="togglePreviewMode()| trackEvent:'Home Category':'preview clicked'"
+                    class="btn  btn-info btn-default  align-nav-ctrl-button" data-toggle="button"  aria-pressed="false" autocomplete="off" tooltips tooltip-title="Toggle Preview Annotation" tooltip-side="bottom" ng-disabled="!fnExist">
+                    <span class="glyphicon glyphicon-eye-open navbar-icon-size "></span>
+            </button>
+        </li>
+        <li style = "padding-left:10px">
+            <button id="getexportview" type="button" ng-click="openExportFrame()| trackEvent:'Home Category':'openExportFrame clicked'" class="btn  btn-default  align-nav-ctrl-button" ng-disabled="!fnExist">
+              <span class="glyphicon glyphicon-cloud-download navbar-icon-size " > </span><small>Export</small>
+            </button>
+          </li>
+      </ul>
+        <ul class="nav navbar-nav navbar-right navbar-ctrl-tool">
+
+      <li>
+       <div ng-if='annotTypeForSelection!=undefined && annotTypeForSelection!="expand" && annotTypeForSelection!="preview"' class="btn-toolbar" role="toolbar" aria-label="..." tooltips tooltip-title="reset the current features" tooltip-side="bottom">
+       
+            
+            <button class='resetAnnotationet btn btn-warning align-left-nav-ctrl-button'
+                    ng-click='resetAnnotation()'><span class="glyphicon glyphicon-ban-circle" ></span></button>
+
+
+
+          </div>
+         
+        </li>
+    </ul>
+
+
+    </div>
+
+  </nav>
+
+
+
+</div>
+
+<!-- Middle-Control Row-->
+<div class="row space-view">
+
+  <!-- LEFT Middle-Control Row-->
+
+  <!-- RIGHT Middle-Control Row-->
+
+
+</div>
+
+
+<div class="row">
+
+
+  <!-- left side bar -->
+  <div class="sidebar col-lg-3 col-md-3 col-sm-3 col-xs-0 grad-col-2-bg">
+
+
+    <div class="panel-group" ng-if='activeTabName == "tab1"'> 
+
+       
+
+            <!-- info on image -->
+     <div class="panel panel-default grad-col-2-bg" style="height: 262px; border:none;-webkit-box-shadow: 0 0px 0px;box-shadow: 0 0px 0px white;overflow:scroll">
+
+
+        <div id='issueformat' ng-if='fnExist==undefined && annotTypeForSelection==undefined' class="alert alert-info" role="alert"> <span class="glyphicon glyphicon-upload"></span> Upload a file image in jpeg or png format (max width 1280 pixels, max height 1280 pixels)</div>
+
+        <!-- about workflow -->
+
+        <div ng-if="buttonLabel=='Restart'" class="alert alert-success">
+          <span>
+              Workflow is terminated. Enabling Preview Mode <span class = "glyphicon glyphicon-eye-open"></span>. <br> Please check  whether any annotation is missing on drawing, then press the export button <span class="glyphicon glyphicon-cloud-download"></span>.<br>
+              Press the restart button <span class="glyphicon glyphicon-play"></span> to supplement your annotation or browse the tree manually.
+          </span>
+        </div>
+
+        <div ng-if='buttonLabel=="Next" && annotTypeForSelection!="expand" && annotTypeForSelection!="preview"' class="alert alert-info">
+          <span>Annotating <strong>{{featLabel}}</strong> attribute with {{annotTypeForSelection}}.</span><br>
+          <span>Press Next <span class="glyphicon glyphicon-step-forward"> </span> button when the parent branch <strong>{{attrParentLabel}}</strong> is visited.</span>
+        </div>
+        
+
+
+        <!-- info about interaction -->
+
+
+
+
+        <div id='infostart' ng-if='buttonLabel=="Start"  && fnExist==true && annotTypeForSelection!="preview"'  class="alert alert-info" role="alert"> Press Start <span class="glyphicon glyphicon-play"></span> button to start annotation worflow.</div>
+
+       
+        <div id='prevmode' ng-if='annotTypeForSelection=="preview" ' class="alert alert-info" role="alert"> Preview mode enabled  <span class="glyphicon glyphicon-eye-open"></span></div>
+
+        
+        <div id='dispinstr' ng-if='instructions !== undefined &&  instructions !== "" && annotTypeForSelection!="preview"' class="alert alert-info" role="alert"> <strong>Details:</strong> {{instructions}} </div>
+
+         <!-- stat in preview mode -->
+
+<!--      <stat-in-preview data-tot = "totCount4Prev" data-type = "annotTypeForSelection" data-labelspie="label4pie" data-countspie="count4Pie" ></stat-in-preview> -->
+
+      </div>
+
+      <!-- progress bar -->
+      <span><small>visited branches (%)</small><span>
+      <progress-wf data-total="progressMax" data-dyn="progressDyn"> </progress-wf>
+     
+
+      <!-- directed navgation -->
+
+      <div class="panel panel-default grad-col-Z-bg" style="margin-bottom:10px">
+          <div class="btn-toolbar" role="toolbar" aria-label="...">
+
+            <div class="col-md-12 directed-nav" >
+          
+
+
+            <div class="input-group" style = "float:right">
+              
+            <input type="text" class="form-control" ng-model="attrParents" aria-label="..." placeholder="Press to Start" disabled="disabled">
+            <div class="input-group-btn">
+                <!-- Button and dropdown menu -->
+
+                  
+
+                  <button id="doneCloseExpend" type="button" ng-click="directedActionFun()" 
+                      
+                      class="btn btn-success align-nav-ctrl-button" tooltips tooltip-title="{{tooltipdirected}}" tooltip-side="top">{{buttonLabel}} <span class = "{{buttonLabelDirectedStyle}}"></span>
+                  </button>
+
+
+              </div>
+
+           </div>
+          </div>
+
+
+          </div>
+
+
+      </div>
+
+
+      <!-- collapsable tree -->
+      <div class="row space-view"></div>
+
+      <div class="panel panel-default grad-col-Z-bg" style="margin-bottom:10px">
+        <div class ="panel-heading grad-col-3-bg"><span class="ico icon-tree101" style="font-size:16px"></span> Annotation tree </div>
+        <div style="max-height:500px; height:484px; overflow: scroll;"> 
+        <abn-tree tree-data="annotStructureData" tree-control="annotStructureTree"
+                  on-select="treeHandler(branch)" expand-level="1"></abn-tree>
+        </div>
+      </div>
+
+
+     
+       <div class="row space-view"></div>
+      
+
+
+   <div class="panel panel-default grad-col-Z-bg" style="margin-bottom:10px" ng-if='annotTypeForSelection=="point" || annotTypeForSelection=="box" || annotTypeForSelection=="assign"'>
+
+        <div class="panel-heading grad-col-3-bg"><span class="glyphicon glyphicon-comment"></span> Comment Box</div>
+
+        <comment-field-box></comment-field-box>  
+
+    </div>
+
+ 
+
+
+
+
+    </div>
+
+
+
+    <!-- group when active tab 3-->
+    <div class="panel-group" ng-if='activeTabName == "tab3"'> 
+      <div class="panel panel-default grad-col-2-bg" style="height: 262px; border:none;-webkit-box-shadow: 0 0px 0px;box-shadow: 0 0px 0px white;overflow:scroll">
+
+
+        <div id='issueformat' class="alert alert-info" role="alert"> Please choose a questionnaire form to fill <span class="glyphicon glyphicon-list"></span>.
+           <div class="dropdown" >
+              <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                      aria-expanded="true">
+                 <span class="glyphicon glyphicon-list"></span> Questionnaire
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li><a role="menuitem" tabindex="-1" href="#/annot" ng-click="revealQ(1)">Genia questionnaire</a></li>
+                <li><a role="menuitem" tabindex="-1" href="#/annot" ng-click="revealQ(2)">Russia 2008 questionnaire</a></li>
+                <li><a role="menuitem" tabindex="-1" href="#/annot" ng-click="revealQ(3)">Tichino questionnaire</a></li>
+                <li><a role="menuitem" tabindex="-1" href="#/annot" ng-click="revealQ(4)">Switzerland questionnaire</a></li>
+              </ul>
+          </div>
+          </div>
+      </div>
+
+     
+
+
+
+
+       
+
+
+
+    </div>
+
+
+
+
+  </div>
+
+
+  <!-- right panel -->
+
+  <div class="col-lg-8 col-md-9 col-sm-9 col-xs-12">
+
+
+    <!-- tabs -->
+
+    <ul class="nav nav-tabs" id="allTabs" style="border:none">
+
+      <li class="active"><a id="tab1" class = "grad-col-Z-bg" ng-click="changeTab($event)" data-toggle="tab">Drawing</a></li>
+
+      <li><a id="tab3" ng-click="changeTab($event)"  class="grad-col-3-bg" data-toggle="tab" style="color:grey">Questionnaire</a></li>
+
+    </ul>
+
+    <!-- Tab panes -->
+    <!-- <div sticky sticky-class="imSoSticky" class="tab-content"> -->
+    <div class="tab-content imtab-content" style="{{sizeCss}}" > 
+
+
+      <div ng-if='activeTabName == "tab1"'>
+
+        <div class="panel panel-default panel-drawing-bg" style="{{sizeCss}}{{bgPreviewCss}}">
+
+          <div class="panel-body ">
+
+            <!-- IF NO FEAT SELECTED -->
+            <div
+              ng-if='annotTypeForSelection==undefined || annotTypeForSelection=="expand" || annotTypeForSelection=="assign"|| annotTypeForSelection=="automatic"'>
+              <feat-undef></feat-undef>
+            </div>
+
+            <!-- IF PREVIEW -->
+            <div ng-if='annotTypeForSelection=="preview"' >
+              <feat-preview></feat-preview>
+            </div>
+
+            <!-- IF POINT -->
+            <div ng-if='annotTypeForSelection=="point"'>
+              <feat-point></feat-point>
+            </div>
+
+            <!-- IF BOX -->
+            <div ng-if='annotTypeForSelection=="box"'>
+
+              <div style='position:relative'>
+                <div id="BoxOnDrawing" ng-jcrop="imgSource" selection="obj.coords" coords='obj.selection'
+                     style='position: relative' >  
+                </div>
+
+
+                <div
+                  style='position: absolute; border: 3px solid #46b8da; top:{{(box.yToStore1*divInfo[1]/divInfo[3])}}px;left:{{(box.xToStore1*divInfo[0]/divInfo[2])}}px; width: {{(box.xToStore2-box.xToStore1)*divInfo[0]/divInfo[2]}}px; height: {{(box.yToStore2-box.yToStore1)*divInfo[1]/divInfo[3]}}px;z-index: 1;'
+
+                  class='area' ng-repeat='box in annotationArray | showOnlyThisFeature:featNameForSelection'
+                  ng-click="selectArea($index)" > </div>
+                <button ng-init='boxDivDim()' ng-if='obj.coords[4] && obj.coords[5]'
+                        style='position: absolute; top: {{obj.selection[1]+obj.selection[5]/2}}px; left: {{obj.selection[0]+obj.selection[4]/2-50}}px; width: 100px;z-index:9999;'
+                        class='btn btn-default btn-xs btn-alpha' ng-click='newArea()'>validate
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+     <!-- <div ng-if='activeTabName == "tab2"'>
+        <h2>Coming soon...</h2>
+      </div> -->
+
+
+      <div ng-if='activeTabName == "tab3"'>
+        <div ng-if='activeQ == 1'>
+          <iframe
+            src="https://docs.google.com/forms/d/1s3TNKk-FBTpGQ7Y1hH1uvnOfOpMOxSpT0kWTF54nQdM/viewform?embedded=true"
+            width="760" height="1280" frameborder="0" marginheight="0" marginwidth="0">Loading...
+          </iframe>
+        </div>
+        <div ng-if='activeQ == 2'>
+          <iframe
+            src="https://docs.google.com/forms/d/13-cr6RnVLUlWH0aNv08eA7zfOicS189KVYItkHLYoQM/viewform?embedded=true"
+            width="760" height="1280" frameborder="0" marginheight="0" marginwidth="0">Loading...
+          </iframe>
+        </div>
+        <div ng-if='activeQ == 3'>
+          <iframe
+            src="https://docs.google.com/forms/d/1bwcsmtyNDKEUNyg_Lb0ukUeRtG8mH9prQcGIQ0Vf0T0/viewform?embedded=true"
+            width="760" height="1280" frameborder="0" marginheight="0" marginwidth="0">Loading...
+          </iframe>
+        </div>
+        <div ng-if='activeQ == 4'>
+          <iframe
+            src="https://docs.google.com/forms/d/1lOhkh5tZ_bMHhxgJV4KnV5O5bJZCIiP_7kJwfNm4ImU/viewform?embedded=true"
+            width="760" height="1280" frameborder="0" marginheight="0" marginwidth="0">Loading...
+          </iframe>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+
+<div class="clearfix visible-md"></div>
+ 
+
+  <!--<div class="col-md-2 col-sm-3 col-xs-12" style='z-index: 20000'>
+
+
+    <div class="dropdown" ng-if='activeTabName == "tab3"'>
+      <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+              aria-expanded="true">
+        Choose questionnaire
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+        <li><a role="menuitem" tabindex="-1" href="#/annot" ng-click="revealQ(1)">Genia questionnaire</a></li>
+        <li><a role="menuitem" tabindex="-1" href="#/annot" ng-click="revealQ(2)">Russia 2008 questionnaire</a></li>
+        <li><a role="menuitem" tabindex="-1" href="#/annot" ng-click="revealQ(3)">Tichino questionnaire</a></li>
+        <li><a role="menuitem" tabindex="-1" href="#/annot" ng-click="revealQ(4)">Switzerland questionnaire</a></li>
+      </ul>
+    </div>
+
+
+  </div>-->
+
+
+</div>
+
+
+
+
+
