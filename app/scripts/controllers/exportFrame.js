@@ -1,3 +1,10 @@
+/*!
+ * package Gauntlet
+ * @author Martial M Sankar & Anastasia Chasapi
+ * copyright 2015-2016, SIB Swiss Institute of Bioinformatics
+ */
+
+
 'use strict';
 
 /**
